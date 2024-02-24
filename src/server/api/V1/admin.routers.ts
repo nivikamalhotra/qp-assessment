@@ -7,10 +7,10 @@ const router: express.Router = express.Router({ mergeParams: true });
 
 //* add new grocery item
 router.post(
-  '/admin/items',
+  '/items',
   api.http(auth.validateUser),
-  api.http(auth.restric('admin')),
-  adminController.addNewItem
+  api.http(auth.checkRole('admin')),
+  api.http(adminController.addNewItem)
 );
 
-export const authRouter = router;
+export const adminRouter = router;

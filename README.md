@@ -34,7 +34,9 @@ This is a Grocery Management System API built with Node.js, Express.js, TypeScri
 7. ACCESS_TOKEN_EXPIRY: Expiry time for access token.
 8. REFRESH_TOKEN_EXPIRY: Expiry time for refresh token.
 
-# API Endpoints - http://localhost:8080/api/v1
+# API Endpoints 
+<b> Api url: http://localhost:8080/api/v1 </b>
+
 <b> Admin Endpoints: </b>
 
 * POST /admin/items: Add a new grocery item.

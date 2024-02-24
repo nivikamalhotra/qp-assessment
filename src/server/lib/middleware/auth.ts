@@ -37,7 +37,7 @@ export const auth = {
     }
   },
 
-  restric: (...role) => {
+  checkRole: (...role) => {
     var res = GlobalUtils.responseObject();
     return async (object?, options?) => {
       const response = options.locals.auth;

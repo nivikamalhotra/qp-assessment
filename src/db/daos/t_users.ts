@@ -13,15 +13,16 @@ export class UserMasterDao extends BaseDAO {
     return this.update(params, { where: where });
   }
 
-  userCount(obj?: { status: string }) {
+  isValidUser(id: number) {
     const query = {
-      distinct: true
+      attributes: { exclude: ['password'] },
+      where: {
+        id: id
+      },
+      raw: true
     };
-    if (obj?.status) {
-      query['where'] = { status: obj?.status };
-    }
 
-    return this.count(query);
+    return this.findOne(query);
   }
 
   getUserByUsername(obj: { key: string; value: string | number }) {

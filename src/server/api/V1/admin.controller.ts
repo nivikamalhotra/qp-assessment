@@ -1,17 +1,17 @@
-import { authService } from '../../services/auth.service';
 import { GlobalUtils } from '../../utils';
 import { joiValidate } from '../../utils/joi/joi-validate';
 import { ApiValidator } from '../../utils/validation';
 import { responses as ModifiedResponse } from '../../utils/responses';
+import { adminService } from '../../services/admin.service';
 
 const controller = {
   addNewItem: async (object, options) => {
     const response = GlobalUtils.responseObject();
 
     try {
-      await ApiValidator.validateBody(object, joiValidate.userApi.signup);
+      await ApiValidator.validateBody(object, joiValidate.addItem);
 
-      const userRes = await authService.signup(object, options);
+      const userRes = await adminService.addItem(object, options);
 
       return ModifiedResponse.sendSuccess(response, userRes);
     } catch (err) {

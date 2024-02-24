@@ -138,12 +138,13 @@ export class ApiValidator {
       //   finalMessage += `${errorDetail.message}.`;
       // }
 
-      if (details.length > 0) finalMessage = details[0].context.label;
+      // if (details.length > 0) finalMessage = details[0].context.label;
 
       const errorFields = _.flatMap(details, errorDetail => errorDetail.path);
-
+      const msg =
+        details.length > 0 ? `The fields ${errorFields} is required` : details[0]?.message;
       throw new errors.ValidationError({
-        message: details[0]?.message || `The field ${finalMessage} is required`,
+        message: msg,
         errorDetails: {
           fields: errorFields
         }

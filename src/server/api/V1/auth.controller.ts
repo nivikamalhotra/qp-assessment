@@ -9,7 +9,7 @@ const controller = {
     const response = GlobalUtils.responseObject();
 
     try {
-      await ApiValidator.validateBody(object, joiValidate.userApi.signIn);
+      await ApiValidator.validateBody(object, joiValidate.signIn);
 
       const userRes = await authService.signIn(object, options);
 
@@ -22,7 +22,7 @@ const controller = {
     const response = GlobalUtils.responseObject();
 
     try {
-      await ApiValidator.validateBody(object, joiValidate.userApi.signup);
+      await ApiValidator.validateBody(object, joiValidate.signup);
 
       const userRes = await authService.signup(object, options);
 
