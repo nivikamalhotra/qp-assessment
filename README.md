@@ -1,5 +1,5 @@
 # QP - Assessment 
-Grocery Management System
+<b> Grocery Management System </b>
 
 This is a Grocery Management System API built with Node.js, Express.js, TypeScript, and MySQL. It allows users to manage grocery items, place orders, and more.
 
@@ -53,10 +53,9 @@ This is a Grocery Management System API built with Node.js, Express.js, TypeScri
 * POST /auth/login: Login the user.
 * POST /auth/signup: Sign up the user.
 
-# Admin Credentials
-username: authorized_user, password: test123
-# User Credentials
-username: user_one, password: test123
+# Credentials
+* Admin - username: authorized_user, password: test123
+* User - username: user_one, password: test123
 
 # Contributing
 Contributions are welcome! Please fork the repository and create a pull request with your changes.
