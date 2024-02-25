@@ -25,5 +25,10 @@ router
     api.http(auth.validateUser),
     api.http(auth.checkRole('admin')),
     api.http(adminController.deleteItem)
+  )
+  .get(
+    api.http(auth.validateUser),
+    api.http(auth.checkRole('admin')),
+    api.http(adminController.getItemById)
   );
 export const adminRouter = router;

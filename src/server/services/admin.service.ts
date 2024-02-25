@@ -71,6 +71,19 @@ class AdminService {
     await itemMasterDao.delete({ id: id });
     return { message: MESSAGES.SUCCESS.ITEM_DELETED };
   }
+
+  async getItemById(object, options) {
+    const sub = options.locals?.auth.sub;
+    const id = options.params.id;
+
+    const user = await userMasterDao.isValidUser(sub);
+    if (!user) {
+      throw new Error(MESSAGES.ERROR.NOT_FOUND);
+    }
+
+    const details = await itemMasterDao.findOne({ where: { id: id } });
+    return { message: MESSAGES.SUCCESS.ITEM_FETCHED, data: details };
+  }
 }
 
 export const adminService = new AdminService();
