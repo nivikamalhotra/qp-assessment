@@ -142,7 +142,7 @@ export class ApiValidator {
 
       const errorFields = _.flatMap(details, errorDetail => errorDetail.path);
       const msg =
-        details.length > 0 ? `The fields ${errorFields} is required` : details[0]?.message;
+        details.length > 1 ? `The fields ${errorFields} is required` : details[0]?.message;
       throw new errors.ValidationError({
         message: msg,
         errorDetails: {

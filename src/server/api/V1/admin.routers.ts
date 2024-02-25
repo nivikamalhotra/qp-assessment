@@ -30,5 +30,10 @@ router
     api.http(auth.validateUser),
     api.http(auth.checkRole('admin')),
     api.http(adminController.getItemById)
+  )
+  .put(
+    api.http(auth.validateUser),
+    api.http(auth.checkRole('admin')),
+    api.http(adminController.updateItemById)
   );
 export const adminRouter = router;

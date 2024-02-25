@@ -84,6 +84,20 @@ class AdminService {
     const details = await itemMasterDao.findOne({ where: { id: id } });
     return { message: MESSAGES.SUCCESS.ITEM_FETCHED, data: details };
   }
+
+  async updateItemById(object, options) {
+    const sub = options.locals?.auth.sub;
+    const id = options.params.id;
+    const body = object;
+
+    const user = await userMasterDao.isValidUser(sub);
+    if (!user) {
+      throw new Error(MESSAGES.ERROR.NOT_FOUND);
+    }
+
+    await itemMasterDao.updateItem(body, { id: id });
+    return { message: MESSAGES.SUCCESS.ITEM_UPDATED };
+  }
 }
 
 export const adminService = new AdminService();

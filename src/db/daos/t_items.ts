@@ -10,7 +10,7 @@ export class ItemMasterDao extends BaseDAO {
     return this.create(params);
   }
 
-  updateItem(params, where: { user_id: number }) {
+  updateItem(params, where: { id: number }) {
     return this.update(params, { where: where });
   }
 
