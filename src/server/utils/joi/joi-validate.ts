@@ -3,6 +3,14 @@ import { ExtendedJoi as joi } from '../../utils/validation';
 const { OBJECT_MISSNG } = APP_CONSTANT.JOI_VALIDATION_TYPE;
 
 export const joiValidate = {
+  orderItem: joi.object().keys({
+    items: joi.array().items(
+      joi.object().keys({
+        id: joi.number().required().integer(),
+        quantity: joi.number().integer().required()
+      })
+    )
+  }),
   signIn: joi.object().keys({
     username: joi.string().trim().required(),
     password: joi.string().trim().required()

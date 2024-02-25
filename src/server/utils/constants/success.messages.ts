@@ -5,5 +5,6 @@ export const SUCCESS = Object.freeze({
   ITEM_FETCHED: 'Item fetched successfully.',
   ITEM_UPDATED: 'Item updated successfully.',
   ITEM_DELETED: 'Item deleted successfully.',
+  ORDER_CREATED: 'Order created successfully.',
   SIGN_IN: 'User sign-in successfully.'
 });

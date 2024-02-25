@@ -13,4 +13,12 @@ router
     api.http(userController.getItems)
   );
 
+router
+  .route('/orders')
+  .post(
+    api.http(auth.validateUser),
+    api.http(auth.checkRole('user')),
+    api.http(userController.orders)
+  );
+  
 export const userRouter = router;
