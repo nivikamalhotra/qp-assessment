@@ -24,6 +24,9 @@ class UserService {
       if (!groceryItem) {
         throw new Error(MESSAGES.ERROR.ITEM_NOT_FOUND);
       }
+      if (groceryItem.inventory < quantity) {
+        throw new Error(`Not enough stock for ${groceryItem.name}.`);
+      }
       totalPrice += groceryItem.price * quantity;
       // Create order items
       const orderItem = {

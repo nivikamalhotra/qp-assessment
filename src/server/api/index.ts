@@ -55,11 +55,9 @@ const http = function http(apiMethod) {
       res.body = response;
 
       // RBAC
-      if (!response.success) {
+      if (response.status === 403) {
         return res.status(403).send(response);
       }
-
-      const contentType = res.get(`Content-Type`);
 
       if (!res.locals['isMiddleware'] && requestHeaders['authorization']) {
         return res.status(401).send(response);

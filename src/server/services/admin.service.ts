@@ -122,8 +122,12 @@ class AdminService {
 
     let inventory = validId.inventory;
     // if inventory sold than we have to minus the quantity from the already inventory count
-    if (operation == 'sold') inventory -= quantity;
-    else if (operation == 'fill') inventory += quantity; // we are filling new inventory quantity
+    if (operation == 'sold') {
+      if (validId.inventory < quantity) {
+        throw new Error(`Not enough stock for ${validId.name}.`);
+      }
+      inventory -= quantity;
+    } else if (operation == 'fill') inventory += quantity; // we are filling new inventory quantity
 
     // update new inventory
     await itemMasterDao.updateItem({ inventory: inventory }, { id: id });
