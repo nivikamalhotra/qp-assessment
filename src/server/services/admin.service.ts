@@ -26,6 +26,11 @@ class AdminService {
     if (!user) {
       throw new Error(MESSAGES.ERROR.NOT_FOUND);
     }
+    const role = user.role;
+    const items = await itemMasterDao.getItems({ limit, start, role });
+
+    return { message: MESSAGES.SUCCESS.ITEM_FETCHED, data: items };
+    /*
     // Generate a unique cache key based on the query parameters
     const cacheKey = `items_${sub}_${limit}_${start}`;
     const client = await connectToRedis();
@@ -41,7 +46,7 @@ class AdminService {
             resolve(JSON.parse(cachedData));
           }
           try {
-            const items = await itemMasterDao.getItems({ limit, start });
+            const items = await itemMasterDao.getItems({ limit, start, role });
             // Cache the data with an expiration time (e.g., 1 hour)
             client.setex(
               cacheKey,
@@ -57,6 +62,7 @@ class AdminService {
     } catch (err) {
       return err;
     }
+    */
   }
 
   async deleteItem(object, options) {

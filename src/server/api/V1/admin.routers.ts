@@ -5,7 +5,6 @@ import { adminController } from './admin.controller';
 
 const router: express.Router = express.Router({ mergeParams: true });
 
-//* add new grocery item
 router
   .route('/items')
   .post(

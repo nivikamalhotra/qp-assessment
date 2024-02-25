@@ -25,10 +25,15 @@ export class ItemMasterDao extends BaseDAO {
     return this.findOne(query);
   }
 
-  getItems(obj: { limit: number; start: number }) {
+  getItems(obj: { limit: number; start: number; role: string }) {
     const query = {
       raw: true
     };
+    if (obj?.role != 'admin') {
+      query['where'] = {
+        status: 'A'
+      };
+    }
     if (obj?.limit) {
       query['limit'] = obj.limit;
       const start = obj?.start || 1;

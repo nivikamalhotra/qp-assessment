@@ -7,6 +7,7 @@ export default class ItemMasterModel extends Model {
   public name: string;
   public price: number;
   public inventory: number;
+  public status: string;
   public created_at: Date;
   public updated_at: Date;
 }
@@ -26,6 +27,11 @@ ItemMasterModel.init(
     price: {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false
+    },
+    status: {
+      type: DataTypes.ENUM('A', 'I'),
+      allowNull: false,
+      defaultValue: 'A'
     },
     inventory: {
       type: DataTypes.INTEGER,
