@@ -3,6 +3,9 @@
 
 This is a Grocery Management System API built with Node.js, Express.js, TypeScript, Redis and MySQL. It allows users to manage grocery items, place orders, and more.
 
+# Postman Doc link for API's
+https://documenter.getpostman.com/view/26820723/2sA2rDvL1X
+
 # Features
 <b> Admin Role: </b>
 
