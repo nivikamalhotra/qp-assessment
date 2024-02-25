@@ -62,5 +62,10 @@ https://documenter.getpostman.com/view/26820723/2sA2rDvL1X
 * Admin - username: authorized_user, password: test123
 * User - username: user_one, password: test123
 
+# Docker
+To run the application using Docker, follow these steps:
+1. Build the Docker image: docker build -t qp-assessment
+2. Run the Docker container: docker run -p 8080:8080 qp-assessment
+
 # Contributing
 Contributions are welcome! Please fork the repository and create a pull request with your changes.
