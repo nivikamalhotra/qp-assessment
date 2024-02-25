@@ -35,4 +35,12 @@ router
     api.http(auth.checkRole('admin')),
     api.http(adminController.updateItemById)
   );
+
+router
+  .route('/items/:id/inventory')
+  .patch(
+    api.http(auth.validateUser),
+    api.http(auth.checkRole('admin')),
+    api.http(adminController.manageInventory)
+  );
 export const adminRouter = router;

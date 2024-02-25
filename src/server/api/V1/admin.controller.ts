@@ -44,7 +44,8 @@ const controller = {
       return ModifiedResponse.sendFailure(response, { message: err.message });
     }
   },
-  getItemById: async (object, options) => { const response = GlobalUtils.responseObject();
+  getItemById: async (object, options) => {
+    const response = GlobalUtils.responseObject();
 
     try {
       await ApiValidator.validateParams(options.params, joiValidate.itemId);
@@ -54,21 +55,38 @@ const controller = {
       return ModifiedResponse.sendSuccess(response, userRes);
     } catch (err) {
       return ModifiedResponse.sendFailure(response, { message: err.message });
-    }},
-    updateItemById: async (object, options) => {
-      const response = GlobalUtils.responseObject();
-
-      try {
-        await ApiValidator.validateParams(options.params, joiValidate.itemId);
-        await ApiValidator.validateBody(object, joiValidate.updateItem);
-
-        const userRes = await adminService.updateItemById(object, options);
-
-        return ModifiedResponse.sendSuccess(response, userRes);
-      } catch (err) {
-        return ModifiedResponse.sendFailure(response, { message: err.message });
-      }
     }
+  },
+
+  updateItemById: async (object, options) => {
+    const response = GlobalUtils.responseObject();
+
+    try {
+      await ApiValidator.validateParams(options.params, joiValidate.itemId);
+      await ApiValidator.validateBody(object, joiValidate.updateItem);
+
+      const userRes = await adminService.updateItemById(object, options);
+
+      return ModifiedResponse.sendSuccess(response, userRes);
+    } catch (err) {
+      return ModifiedResponse.sendFailure(response, { message: err.message });
+    }
+  },
+
+  manageInventory: async (object, options) => {
+    const response = GlobalUtils.responseObject();
+
+    try {
+      await ApiValidator.validateParams(options.params, joiValidate.itemId);
+      await ApiValidator.validateBody(object, joiValidate.manageInventory);
+
+      const userRes = await adminService.manageInventory(object, options);
+
+      return ModifiedResponse.sendSuccess(response, userRes);
+    } catch (err) {
+      return ModifiedResponse.sendFailure(response, { message: err.message });
+    }
+  }
 };
 
 export const adminController = controller;

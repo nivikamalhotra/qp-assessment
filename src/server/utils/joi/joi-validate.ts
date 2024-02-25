@@ -33,17 +33,20 @@ export const joiValidate = {
   itemId: joi.object().keys({
     id: joi.number().required().integer()
   }),
+  manageInventory: joi.object().keys({
+    quantity: joi.number().integer().required(),
+    operation: joi.string().trim().valid('sold', 'fill').required()
+  }),
   updateItem: joi
     .object()
     .keys({
       name: joi.string().trim().optional(),
       price: joi.number().precision(2).optional(),
-      inventory: joi.number().optional(),
       status: joi.string().optional().valid('A', 'I')
     })
-    .or('name', 'price', 'inventory', 'status')
+    .or('name', 'price', 'status')
     .required()
     .messages({
-      [OBJECT_MISSNG]: 'object must contain at least one of  [name,price,inventory] for edit.'
+      [OBJECT_MISSNG]: 'object must contain at least one of  [name,price,status] for edit.'
     })
 };

@@ -104,6 +104,31 @@ class AdminService {
     await itemMasterDao.updateItem(body, { id: id });
     return { message: MESSAGES.SUCCESS.ITEM_UPDATED };
   }
+
+  async manageInventory(object, options) {
+    const sub = options.locals?.auth.sub;
+    const id = options.params.id;
+    const { quantity, operation } = object;
+
+    const user = await userMasterDao.isValidUser(sub);
+    if (!user) {
+      throw new Error(MESSAGES.ERROR.NOT_FOUND);
+    }
+
+    const validId = await itemMasterDao.findByPk(id);
+    if (!validId) {
+      throw new Error(MESSAGES.ERROR.ITEM_NOT_FOUND);
+    }
+
+    let inventory = validId.inventory;
+    // if inventory sold than we have to minus the quantity from the already inventory count
+    if (operation == 'sold') inventory -= quantity;
+    else if (operation == 'fill') inventory += quantity; // we are filling new inventory quantity
+
+    // update new inventory
+    await itemMasterDao.updateItem({ inventory: inventory }, { id: id });
+    return { message: MESSAGES.SUCCESS.ITEM_UPDATED };
+  }
 }
 
 export const adminService = new AdminService();
