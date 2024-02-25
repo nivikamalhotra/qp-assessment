@@ -58,6 +58,19 @@ class AdminService {
       return err;
     }
   }
+
+  async deleteItem(object, options) {
+    const sub = options.locals?.auth.sub;
+    const id = options.params.id;
+
+    const user = await userMasterDao.isValidUser(sub);
+    if (!user) {
+      throw new Error(MESSAGES.ERROR.NOT_FOUND);
+    }
+
+    await itemMasterDao.delete({ id: id });
+    return { message: MESSAGES.SUCCESS.ITEM_DELETED };
+  }
 }
 
 export const adminService = new AdminService();

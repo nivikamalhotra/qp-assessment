@@ -30,6 +30,19 @@ const controller = {
     } catch (err) {
       return ModifiedResponse.sendFailure(response, { message: err.message });
     }
+  },
+  deleteItem: async (object, options) => {
+    const response = GlobalUtils.responseObject();
+
+    try {
+      await ApiValidator.validateParams(options.params, joiValidate.itemId);
+
+      const userRes = await adminService.deleteItem(object, options);
+
+      return ModifiedResponse.sendSuccess(response, userRes);
+    } catch (err) {
+      return ModifiedResponse.sendFailure(response, { message: err.message });
+    }
   }
 };
 

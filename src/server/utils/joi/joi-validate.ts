@@ -19,5 +19,8 @@ export const joiValidate = {
   getItems: joi.object().keys({
     start: joi.number().optional().integer().min(1),
     limit: joi.number().min(1).optional().integer().min(1)
+  }),
+  itemId: joi.object().keys({
+    id: joi.number().required().integer()
   })
 };

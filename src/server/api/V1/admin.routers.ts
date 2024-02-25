@@ -19,4 +19,11 @@ router
     api.http(adminController.getItems)
   );
 
+router
+  .route('/items/:id')
+  .delete(
+    api.http(auth.validateUser),
+    api.http(auth.checkRole('admin')),
+    api.http(adminController.deleteItem)
+  );
 export const adminRouter = router;
