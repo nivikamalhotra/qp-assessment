@@ -1,7 +1,7 @@
 # QP - Assessment 
 <b> Grocery Management System </b>
 
-This is a Grocery Management System API built with Node.js, Express.js, TypeScript, and MySQL. It allows users to manage grocery items, place orders, and more.
+This is a Grocery Management System API built with Node.js, Express.js, TypeScript, Redis and MySQL. It allows users to manage grocery items, place orders, and more.
 
 # Features
 <b> Admin Role: </b>

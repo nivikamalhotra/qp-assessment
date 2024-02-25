@@ -24,4 +24,16 @@ export class ItemMasterDao extends BaseDAO {
 
     return this.findOne(query);
   }
+
+  getItems(obj: { limit: number; start: number }) {
+    const query = {
+      raw: true
+    };
+    if (obj?.limit) {
+      query['limit'] = obj.limit;
+      const start = obj?.start || 1;
+      query['offset'] = start == 0 ? start : (start - 1) * obj.limit;
+    }
+    return this.findAndCountAll(query);
+  }
 }

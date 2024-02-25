@@ -47,17 +47,6 @@ export class Server {
       }
     ]);
 
-    /**
-         * Connect with mongodb
-
-         await MongoConnector.connect();
-         debug.info(transactionId, debugArg, 'Database Connected');
-         */
-
-    /**
-     * Connect with redis
-     */
-
     // Setup our collection of express apps
     const parentApp = await ServerApp.init({ transactionId });
     debug.info(transactionId, debugArg, `Express Apps done`);

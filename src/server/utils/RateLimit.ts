@@ -20,7 +20,7 @@ export const RateLimiter = {
   publicRates() {
     return new setRateLimit({
       windowMs: 60 * 1000, // 15 minutes
-      max: 5, // limit each IP to 300 requests per windowMs,
+      max: 20, // limit each IP to 300 requests per windowMs,
       //message: 'You have exceeded your 5 requests per minute limit.'
       handler: (req, res, next) => {
         // Customize the error response

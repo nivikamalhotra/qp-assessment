@@ -17,6 +17,19 @@ const controller = {
     } catch (err) {
       return ModifiedResponse.sendFailure(response, { message: err.message });
     }
+  },
+  getItems: async (object, options) => {
+    const response = GlobalUtils.responseObject();
+
+    try {
+      await ApiValidator.validateQuery(options.query, joiValidate.getItems);
+
+      const userRes = await adminService.getItems(object, options);
+
+      return ModifiedResponse.sendSuccess(response, userRes);
+    } catch (err) {
+      return ModifiedResponse.sendFailure(response, { message: err.message });
+    }
   }
 };
 
